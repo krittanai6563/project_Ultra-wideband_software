@@ -91,7 +91,7 @@ import Header from "./pages/Header.vue";
 import Footer from "./pages/Footer.vue";
 import Sidebar from "./pages/Sidebar.vue";
 import Search from "./pages/Search.vue";
-import Menu from "./pages/Menu.vue";
+
 
 import Chart from "./Chart.vue"
 import Tr from './Trilateration.vue'
@@ -106,7 +106,7 @@ import Tr from './Trilateration.vue'
 
 
 export default {
-  components: { Header, Footer, Sidebar, Search, Menu, Chart ,Tr},
+  components: { Header, Footer, Sidebar, Search, Chart ,Tr},
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Master",
 

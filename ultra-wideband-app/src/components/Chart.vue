@@ -75,7 +75,7 @@ export default defineComponent({
     };
 
     // Update the chart every 5 seconds
-    setInterval(updateChart, 5000);
+    setInterval(updateChart, 1000);
 
     onMounted(() => {
       const ctx = chartCanvas.value.getContext('2d');

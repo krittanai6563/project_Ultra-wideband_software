@@ -34,15 +34,15 @@
                         <!--begin::Row-->
                         <div class="row py-10 g-5">
                             <!--begin::Column-->
-                            <div class="col-lg-12">
+                            <div class="col-lg-12" v-show="!mobile">
 
 
-                                
+                               
                          
                                 <!--begin::Row-->
                                 <div class="row g-12">
                                     <div class="col-sm-4">
-                                        <a href="/index" class="card bg-light-success hoverable min-h-125px shadow-none mb-5">
+                                        <a href="#" :to="{name: 'Home'}" class="card bg-light-success hoverable min-h-125px shadow-none mb-5">
                                             <div class="card-body d-flex flex-column flex-center">
                                                 <h3 class="fs-3 mb-2 text-dark fw-bolder">ระบุตำแหน่ง</h3>
                                                 <p class="mb-0 text-gray-600">ระบุตำแหน่งแบบ real time</p>
