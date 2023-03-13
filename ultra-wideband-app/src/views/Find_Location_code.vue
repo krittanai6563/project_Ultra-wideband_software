@@ -270,20 +270,49 @@ export default defineComponent({
 </script> -->
 
 
-
 <template>
-    <div>
-        <label for="period">Select period:</label>
-        <select v-model="selectedPeriod">
-            <option value="all">All</option>
-            <option value="30">Last 30 minutes</option>
-            <option value="60">Last 1 hour</option>
-            <option value="90">Last 1.5 hours</option>
-            <option value="180">Last 3 hours</option>
-        </select>
+    <div class="row mb-12">
 
-        <canvas ref="canvasRef"></canvas>
+        <div class="card mb-5 mb-xxl-8">
+            <div class="card-body d-flex justify-content-between card-rounded p-0 d-flex "
+                style="background-color:#F3F6F9; ">
+                <div class="d-flex flex-column flex-lg-row-auto py-10 py-md-14 px-10 px-md-20 pe-lg-0">
+                    <h2 class="fw-bold text-dark mb-0">ค้นหาตำแหน่งย้อนหลัง</h2>
+                    <div class="fs-3 mb-8"></div>
+
+
+                    <label for="period"></label>
+                    <select class="select2-selection select2-selection--single form-select form-select-lg form-select-solid" style="width: 300px; background-color:#FFFFFF; " v-model="selectedPeriod">
+                        
+                        <option value="all">ค้นหาทั้งหมด</option>
+                        <option value="30"> 30 นาทีที่ผ่านมา</option>
+                        <option value="60"> 1 ชั่วโมงที่ผ่านมา</option>
+                        <option value="90"> 1 ชั่วโมงครึ่งที่ผ่านมา</option>
+                        <option value="180">3 ชั่วโมงที่ผ่านมา</option>
+                    </select>
+                    <!--end::Form-->
+                </div>
+
+                <div class="d-none d-md-flex flex-row-fluid mw-200px ms-auto bgi-no-repeat bgi-position-y-center bgi-position-x-right bgi-size-contain"
+                    style="background-image: url('../src/assets/frontend/img/undraw_map_re_60yf.svg');">
+                </div>
+            </div>
+        </div>
     </div>
+
+    <canvas ref="canvasRef"></canvas>
+    <!-- <div>
+            <label for="period">Select period:</label>
+            <select v-model="selectedPeriod">
+                <option value="all">All</option>
+                <option value="30">Last 30 minutes</option>
+                <option value="60">Last 1 hour</option>
+                <option value="90">Last 1.5 hours</option>
+                <option value="180">Last 3 hours</option>
+            </select>
+
+            <canvas ref="canvasRef"></canvas>
+        </div> -->
 </template>
 
 <script lang="ts">
@@ -325,7 +354,7 @@ export default defineComponent({
             drawChart();
         }
 
-     function drawChart() {
+        function drawChart() {
             const ctx = canvasRef.value?.getContext('2d');
             if (ctx) {
                 const chartData = {

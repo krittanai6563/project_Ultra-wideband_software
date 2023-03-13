@@ -2,6 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from './components/Master.vue'
 import About from './views/AddUser.vue'
 import Find_Location from './views/Find_Location.vue'
+import Find_distance from './views/Find_distance.vue'
+import floorplan from './components/Floorplan.vue'
 
 const routes: RouteRecordRaw[] = [
 {
@@ -18,7 +20,18 @@ const routes: RouteRecordRaw[] = [
     path: '/Find_Location',
     name: 'Find_Location',
     component: Find_Location
-}
+  },
+  {
+    path: '/MyComponent',
+    name: 'MyComponent',
+    component: Find_distance
+  },
+  {
+    path: '/floorplan',
+    name: 'floorplan',
+    component: floorplan
+
+  }
 ]
 const router = createRouter({
   history: createWebHistory(),

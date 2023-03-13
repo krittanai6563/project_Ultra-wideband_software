@@ -19,14 +19,14 @@
                             <!--begin::Info-->
                             <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-1">
                                 <!--begin::Title-->
-                                <h3 class="text-dark fw-bolder my-1">ค้นหาตำแหน่ง</h3>
+                                <h3 class="text-dark fw-bolder my-1">ระบุตำแหน่ง</h3>
                                 <!--end::Title-->
                                 <!--begin::Breadcrumb-->
                                 <ul class="breadcrumb breadcrumb-line bg-transparent text-muted fw-bold p-0 my-1 fs-7">
                                     <li class="breadcrumb-item">
                                         <a href="index.html" class="text-muted text-hover-primary">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item text-dark">ค้นหาตำแหน่ง</li>
+                                    <li class="breadcrumb-item text-dark">ระบุตำแหน่ง</li>
                                 </ul>
                                 <!--end::Breadcrumb-->
                             </div>
@@ -41,19 +41,9 @@
                             <div class="card">
                                 <div class="card-body p-12">
 
-                                     
 
-
-
-
-                                        <test></test>
-                                     
-                                  
-                                        
- 
-
-                                    
-
+                                 <Tr></Tr>
+                                
 
 
 
@@ -96,28 +86,22 @@ import Footer from "../components/pages/Footer.vue";
 import Sidebar from "../components/pages/Sidebar.vue";
 import Search from "../components/pages/Search.vue";
 
-import test from "./Find_Location_code.vue"
-
-import t1 from "./About.vue"
 
 
+import Tr from './About.vue'
 
 
 
 
 
-
-
-// import { reactive } from '@vue/runtime-core'
-// import { dbAnchor1 } from '../firebase/firebase'
 
 
 
 
 export default {
-    components: { Header, Footer, Sidebar, Search , test,t1},
+    components: { Header, Footer, Sidebar, Search, Tr },
     // eslint-disable-next-line vue/multi-word-component-names
-    name: "Find_Location",
+    name: "Find_distance",
 
     //  methods: {
     //   refresh() {

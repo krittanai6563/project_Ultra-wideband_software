@@ -19,14 +19,14 @@
                             <!--begin::Info-->
                             <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-1">
                                 <!--begin::Title-->
-                                <h3 class="text-dark fw-bolder my-1">ค้นหาตำแหน่ง</h3>
+                                <h3 class="text-dark fw-bolder my-1">สร้างแผนที่</h3>
                                 <!--end::Title-->
                                 <!--begin::Breadcrumb-->
                                 <ul class="breadcrumb breadcrumb-line bg-transparent text-muted fw-bold p-0 my-1 fs-7">
                                     <li class="breadcrumb-item">
                                         <a href="index.html" class="text-muted text-hover-primary">หน้าแรก</a>
                                     </li>
-                                    <li class="breadcrumb-item text-dark">ค้นหาตำแหน่ง</li>
+                                    <li class="breadcrumb-item text-dark">สร้างและออกแบบแผนที่ภายในห้อง</li>
                                 </ul>
                                 <!--end::Breadcrumb-->
                             </div>
@@ -41,19 +41,12 @@
                             <div class="card">
                                 <div class="card-body p-12">
 
-                                     
-
-
-
-
-                                        <test></test>
-                                     
-                                  
-                                        
- 
-
                                     
+                                    <Chart></Chart>
 
+
+ 
+                                 
 
 
 
@@ -72,7 +65,9 @@
             </div>
             <!--end::Wrapper-->
             <!--begin::Sidebar-->
-            <Sidebar></Sidebar>
+
+
+   
             <!--end::Sidebar-->
         </div>
         <!--end::Page-->
@@ -91,17 +86,13 @@
 
 
 <script lang="ts" >
-import Header from "../components/pages/Header.vue";
-import Footer from "../components/pages/Footer.vue";
-import Sidebar from "../components/pages/Sidebar.vue";
-import Search from "../components/pages/Search.vue";
+import Header from "./pages/Header.vue";
+import Footer from "./pages/Footer.vue";
 
-import test from "./Find_Location_code.vue"
-
-import t1 from "./About.vue"
+import Search from "./pages/Search.vue";
 
 
-
+import Chart from "../views/floorplan_room.vue"
 
 
 
@@ -115,9 +106,9 @@ import t1 from "./About.vue"
 
 
 export default {
-    components: { Header, Footer, Sidebar, Search , test,t1},
+    components: { Header, Footer, Search, Chart },
     // eslint-disable-next-line vue/multi-word-component-names
-    name: "Find_Location",
+    name: "floorplan",
 
     //  methods: {
     //   refresh() {

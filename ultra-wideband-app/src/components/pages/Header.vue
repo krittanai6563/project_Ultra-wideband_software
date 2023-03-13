@@ -219,7 +219,7 @@
                                             </a>
                                         </div>
                                         <div class="col-sm-4">
-                                            <a  class="card bg-light-danger hoverable min-h-125px shadow-none mb-5">
+                                            <a @click="navigateTo('/Find_Location')" class="card bg-light-danger hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">ประวัติตำแหน่ง</h3>
                                                     <p class="mb-0 text-gray-600">ค้นหาตำแหน่งการเดินทางเฉพาะบุคคล</p>
@@ -227,7 +227,7 @@
                                             </a>
                                         </div>
                                         <div class="col-sm-4">
-                                            <a @click="navigateTo('/Find_Location')" class="card bg-light-warning hoverable min-h-125px shadow-none mb-5">
+                                            <a @click="navigateTo('/MyComponent')" class="card bg-light-warning hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
                                                     <h3 class="fs-3 mb-2 text-dark text-hover-primary fw-bolder">ค้นหาตำแหน่ง
                                                     </h3>
@@ -239,7 +239,7 @@
                                     <!--end::Row-->
                                     <!--begin::Row-->
                                     <div class="row g-5">
-                                        <div class="col-sm-8">
+                                        <div class="col-sm-4">
                                             <a href="#" class="card bg-light-primary hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">เขตหวงห้าม</h3>
@@ -250,6 +250,16 @@
                                             </a>
                                       
                                         </div>
+                                         <div class="col-sm-4">
+                                      
+                                                <a  @click="navigateTo('/floorplan')" class="card bg-light-info hoverable shadow-none min-h-125px mb-5">
+                                                    <div class="card-body d-flex flex-column flex-center text-center">
+                                                        <h3 class="fs-3 mb-2 text-dark fw-bolder">สร้างแผนที่</h3>
+                                                        <p class="mb-0 text-gray-600">สร้างและออกแบบแผนที่ภายในห้อง</p>
+                                                    </div>
+                                                </a>
+                                     
+                                            </div>
                                         <div class="col-sm-4">
                                       
                                             <a  @click="navigateTo('/about')" class="card bg-light-info hoverable shadow-none min-h-125px mb-5">

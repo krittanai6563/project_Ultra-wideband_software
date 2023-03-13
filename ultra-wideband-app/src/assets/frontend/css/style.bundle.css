@@ -244,6 +244,12 @@ a:not([href]):not([class]):hover {
   font-family: 'Krub', sans-serif;
   font-family: 'Prompt', sans-serif;
 }
+option{
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-family: 'Krub', sans-serif;
+      font-family: 'Prompt', sans-serif;
+
+}
 
 pre,
 code,
@@ -359,6 +365,9 @@ textarea {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-family: 'Krub', sans-serif;
+    font-family: 'Prompt', sans-serif;
 }
 
 button,
@@ -54782,7 +54791,7 @@ body {
   }
 
   .sidebar-enabled[data-sidebar=on] .wrapper {
-    margin-right: 400px;
+    margin-right: 350px;
   }
 
   .header-fixed[data-kt-sticky-header=on] .wrapper {
@@ -54796,7 +54805,7 @@ body {
   .container-lg,
   .container-xl,
   .container-xxl {
-    padding: 0 40px;
+    padding: 0 32px;
   }
 }
 
@@ -54858,7 +54867,7 @@ body {
   }
 
   .header-fixed[data-kt-sticky-header=on][data-sidebar=on] .header {
-    right: 400px;
+    right: 340px;
   }
 }
 
