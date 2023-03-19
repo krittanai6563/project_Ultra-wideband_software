@@ -210,7 +210,7 @@
                          
                                     <!--begin::Row-->
                                     <div class="row g-12">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                             <a @click="navigateTo('/')" class="card bg-light-success hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">ระบุตำแหน่ง</h3>
@@ -218,20 +218,20 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <!-- <div class="col-sm-4">
                                             <a @click="navigateTo('/Find_Location')" class="card bg-light-danger hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">ประวัติตำแหน่ง</h3>
                                                     <p class="mb-0 text-gray-600">ค้นหาตำแหน่งการเดินทางเฉพาะบุคคล</p>
                                                 </div>
                                             </a>
-                                        </div>
+                                        </div> -->
                                         <div class="col-sm-4">
                                             <a @click="navigateTo('/MyComponent')" class="card bg-light-warning hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
-                                                    <h3 class="fs-3 mb-2 text-dark text-hover-primary fw-bolder">ค้นหาตำแหน่ง
+                                                    <h3 class="fs-3 mb-2 text-dark text-hover-primary fw-bolder">ประวัติตำแหน่ง
                                                     </h3>
-                                                    <p class="mb-0 text-gray-600">ค้นหาตำแหน่งที่ใกล้คุณ</p>
+                                                    <p class="mb-0 text-gray-600">ค้นหาตำแหน่งการเดินทางเฉพาะบุคคล</p>
                                                 </div>
                                             </a>
                                         </div>
@@ -250,7 +250,7 @@
                                             </a>
                                       
                                         </div>
-                                         <div class="col-sm-4">
+                                        <div class="col-sm-4">
                                       
                                                 <a  @click="navigateTo('/floorplan')" class="card bg-light-info hoverable shadow-none min-h-125px mb-5">
                                                     <div class="card-body d-flex flex-column flex-center text-center">

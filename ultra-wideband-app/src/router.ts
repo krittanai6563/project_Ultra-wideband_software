@@ -3,7 +3,7 @@ import Home from './components/Master.vue'
 import About from './views/AddUser.vue'
 import Find_Location from './views/Find_Location.vue'
 import Find_distance from './views/Find_distance.vue'
-import floorplan from './components/Floorplan.vue'
+import index1 from './components/Floorplan.vue'
 
 const routes: RouteRecordRaw[] = [
 {
@@ -28,8 +28,8 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/floorplan',
-    name: 'floorplan',
-    component: floorplan
+    name: 'index1',
+    component: index1
 
   }
 ]

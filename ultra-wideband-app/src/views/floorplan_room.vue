@@ -1,24 +1,74 @@
 <template>
+    <!-- <button @click="undo">Undo</button>
+            <button @click="redo">Redo</button> -->
+    <div class="card-header align-items-center ">
+                    <!--begin::Toolbar-->
+                    <div class="d-flex align-items-center">
+                    
+                        <div class="d-flex align-items-center me-1 my-2">
+                            <a href="#" @click="undo" class="btn btn-icon btn-active-light-primary btn-sm me-2" data-bs-toggle="tooltip" aria-label="Favorite" data-bs-original-title="Favorite" data-kt-initialized="1">
+                                <i class="fas fa-reply fs-6"></i>
+                            </a>
+
+                           
+
+                            <a href="#" class="btn btn-icon btn-active-light-primary btn-sm me-2" data-bs-toggle="tooltip" aria-label="Delete" data-bs-original-title="Delete" data-kt-initialized="1">
+                                <i class="fas fa-trash fs-6"></i>
+                            </a>
+                        </div>
+                    </div>
+                  
+                   
+                </div>
   <div>
-        <canvas ref="canvas" width="800" height="400"></canvas>
+
+
+      
           <div v-if="isEditing">
-          <input type="text" v-model="revisionNote" placeholder="Enter revision note">
-          <button @click="saveRevisionNote">Save</button>
-        </div>
-        <button @click="editRoomSize">Edit</button>
+            <div>
+                        <label>Width:</label>
+                        <input type="number" v-model="width">
+                    </div>
+                    <div>
+                        <label>Height:</label>
+                        <input type="number" v-model="height">
+                    </div>
+          <!-- <input type="text" v-model="revisionNote" placeholder="Enter revision note"> -->
+          <button @click="saveRevisionNote">Save Revision Note</button>
+        </div><br>
+        <button @click="editRoomSize">Edit Room Size</button>
 
         
-        <div>
-          <label for="roomSize">Room Size:</label>
-          <select v-model="selectedSize" id="roomSize">
-            <option value="small">Small</option>
-            <option value="medium">Medium</option>
-            <option value="large">Large</option>
-          </select>
-        </div>
-      </div>
+      
+      </div><br>
 
+        <canvas ref="canvas" width="850" height="500"></canvas>
 
+      <div>
+                        <label>Width:</label>
+                        <input type="number" v-model="width" readonly>
+                    </div>
+                    <div>
+                        <label>Height:</label>
+                        <input type="number" v-model="height" readonly>
+                    </div>
+
+            <!-- <div>
+                <canvas ref="canvas" width="850" height="500"></canvas>
+                <div>
+                    <label>Width:</label>
+                    <input type="number" v-model="width" readonly>
+                </div>
+                <div>
+                    <label>Height:</label>
+                    <input type="number" v-model="height" readonly>
+                </div>
+             
+                <div>
+                    <button @click="editRoomSize">Edit Room Size</button>
+                    <button @click="saveRevisionNote">Save Revision Note</button>
+                </div>
+            </div> -->
 
 
 
@@ -42,7 +92,14 @@
     
                                     
 
-                                    
+                                      <div>
+              <label for="roomSize">Room Size:</label>
+              <select v-model="selectedSize" id="roomSize">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+              </select>
+            </div>
 
    
 
@@ -85,6 +142,9 @@ export default {
             height: 150,
             isEditing: false,
             revisionNote: '',
+            history: [],
+            historyIndex: 0, // Current index in the history array
+            
         };
     },
     mounted() {
@@ -93,6 +153,9 @@ export default {
         this.canvas.on('mouse:down', this.handleMouseDown);
         this.canvas.on('mouse:move', this.handleMouseMove);
         this.canvas.on('mouse:up', this.handleMouseUp);
+            // Initialize the history array with the current canvas state
+        this.history.push(JSON.stringify(this.canvas));
+
         this.drawRoom();
     },
     watch: {
@@ -130,6 +193,8 @@ export default {
             this.canvas.clear();
             this.canvas.add(rect);
             this.canvas.renderAll();
+                // Save the current canvas state to the history array
+            this.history.push(JSON.stringify(this.canvas));
         },
         editRoomSize() {
             this.isEditing = true;
@@ -160,8 +225,8 @@ export default {
             }
         },
         saveRevisionNote() {
-            // Save the revision note to a database or other storage mechanism
-            console.log('Revision note saved:', this.revisionNote);
+             console.log('Revision note saved:', this.revisionNote);
+            console.log('New room size:', this.width, 'x', this.height);
 
             // Reset the revision note and disable editing
             this.revisionNote = '';
@@ -171,6 +236,20 @@ export default {
             const activeObject = this.canvas.getActiveObject();
             this.canvas.remove(activeObject);
             this.canvas.renderAll();
+        },
+         undo() {
+            if (this.history.length > 1) {
+                this.history.pop();
+                const canvasState = this.history[this.history.length - 1];
+                this.canvas.loadFromJSON(canvasState);
+            }
+        },
+        redo() {
+            const nextCanvasState = this.history[this.history.length + 1];
+            if (nextCanvasState) {
+                this.history.push(nextCanvasState);
+                this.canvas.loadFromJSON(nextCanvasState);
+            }
         },
     },
 };

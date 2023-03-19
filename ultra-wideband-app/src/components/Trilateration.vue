@@ -59,7 +59,7 @@ export default defineComponent({
           }
         }
       if (!duplicateFound) {
-          dbPosition.push({ x, y, r:50 ,timestamp: firebase.database.ServerValue.TIMESTAMP })
+          dbPosition.push({ x, y, r:10 ,timestamp: firebase.database.ServerValue.TIMESTAMP })
           positions.value.push(position.value)
         }
 

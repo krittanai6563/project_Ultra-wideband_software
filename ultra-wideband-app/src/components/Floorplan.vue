@@ -39,7 +39,7 @@
                         <div class="container">
                             <!--begin::Pricing-->
                             <div class="card">
-                                <div class="card-body p-12">
+                                <div class="card-body p-8">
 
                                     
                                     <Chart></Chart>
@@ -92,7 +92,7 @@ import Footer from "./pages/Footer.vue";
 import Search from "./pages/Search.vue";
 
 
-import Chart from "../views/floorplan_room.vue"
+import Chart from "../views/index.vue"
 
 
 
