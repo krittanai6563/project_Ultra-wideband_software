@@ -62,9 +62,9 @@ export default defineComponent({
       {
         label: 'Anchor',
         data: [
-          { x: 10, y: 10, r: 10 },
-          { x: 15, y: 15, r: 10 },
-          { x: 20, y: 20, r: 10 },
+          { x: 1, y: 1, r: 10 },
+          { x: 4, y: 1, r: 10 },
+          { x: 3, y: 5, r: 10 },
         ],
          backgroundColor: 'rgba(0,0,0)',
         borderColor: 'rgba(0,0,0)',
@@ -77,7 +77,7 @@ export default defineComponent({
       scales: {
         y: {
           min: 0,
-          max: 30,
+          max: 6,
           beginAtZero: true,
           // reverse: true, กลับเลข 0
           ticks: {
@@ -88,7 +88,7 @@ export default defineComponent({
         },
         x: {
           min: 0,
-          max: 30,
+          max: 6,
           ticks: {
             stepSize: 1,
           },
@@ -117,9 +117,9 @@ export default defineComponent({
         });
         data.value.datasets[0].data = newValues;
         data.value.datasets[1].data = [
-          { x: 10, y: 10, r: 10 },
-          { x: 15, y: 15, r: 10 },
-          { x: 20, y: 20, r: 10 },
+          { x: 1, y: 1, r: 10 },
+          { x: 5, y: 1, r: 10 },
+          { x: 3, y: 5, r: 10 },
         ];
       
 

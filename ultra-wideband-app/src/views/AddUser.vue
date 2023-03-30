@@ -83,7 +83,7 @@
                                     
                                             <td>
                                                 <span class="text-gray-800 fw-bold d-block fs-6">
-                                                 {{ message[0] }}
+                                                 {{ message.name }}
                                                 </span>
 
                                                 
@@ -91,16 +91,16 @@
                                             </td>
                                             <td>
                                                 <span class="text-success fw-bold d-block fs-6">
-                                                   {{ message[1] }}
+                                                   {{ message.Email }}
                                                 </span>
 
                                             </td>
                                                 <td>
-                                                    <span class="label label-lg label-light-primary label-inline"> {{ message[2] }}</span>
+                                                    <span class="label label-lg label-light-primary label-inline"> {{ message.tel }}</span>
                                                 </td>
                                             <td>
                                                 <span
-                                                    class="label label-lg label-light-primary label-inline"> {{ message[3] }}</span>
+                                                    class="label label-lg label-light-primary label-inline"> {{ message.id_Tag }}</span>
                                             </td>
                                             <td class="pe-0 text-end">
                                                 <!-- <a href="#"
@@ -205,7 +205,22 @@
                                                     <label for="exampleInputEmail1">หมายเลข Tag</label>
                                                     <input type="tel" class="form-control form-control-solid form-control-lg" v-model="numbertag" />
                                                 </div>
-                                                <div class="mb-12"></div>
+
+                                               
+                                                           <div class="mb-8" style="width: 361px; max-width: 100%">
+                                                          <label  for="roomAccess">ไม่อนุญาติให้เข้าถึง:</label>
+                <select class="form-select form-select-solid" aria-label="Select example"  id="roomAccess" v-model="roomAccess" >
+                  <option value="A">โซน A</option>
+                  <option value="B">โซน B</option>
+                  <option value="C">โซน C</option>
+                </select>
+                                                    </div>
+         
+          
+
+      
+
+                      <div class="mb-12"></div>
                                        
                                                 <!-- <p><input type="submit" name ="submit" value="บันทึก" class="btn btn-primary fw-bold me-2 px-8" /></p> -->
                                                <input type="submit" value="บันทึก" class="btn btn-primary fw-bold me-2 px-8" />
@@ -301,6 +316,7 @@ export default {
             Email: '',
             tel: '',
             numbertag: '',
+            roomAccess: [],
             editText:null
 
         }
@@ -308,11 +324,12 @@ export default {
 
     methods: {
         onSubmit() {
-            messageRef.push({ 0: this.name, 1: this.Email, 2: this.tel, 3: this.numbertag })
+            messageRef.push({ name: this.name, Email: this.Email, tel: this.tel, id_Tag: this.numbertag , roomAccess: this.roomAccess })
             this.name = ''
             this.Email = ''
             this.tel = ''
             this.numbertag = ''
+            this.roomAccess = []
            
              
             

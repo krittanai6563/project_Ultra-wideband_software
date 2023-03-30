@@ -54181,7 +54181,7 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 .explore-btn-toggle:focus,
 .explore-btn-toggle:active {
   color: #ffffff;
-  background-color: #00B2FF;
+  background-color: #FFE4B5;
 }
 
 .explore-btn-dismiss {
@@ -54189,12 +54189,12 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 }
 
 .explore-btn-dismiss:hover i {
-  color: #00B2FF;
+  color: #FFE4B5;
 }
 
 .explore-btn-dismiss:hover .svg-icon svg [fill]:not(.permanent):not(g) {
   transition: fill 0.3s ease;
-  fill: #00B2FF;
+  fill: #FFE4B5;
 }
 
 .explore-btn-dismiss:hover .svg-icon svg:hover [fill]:not(.permanent):not(g) {
@@ -54204,12 +54204,12 @@ label.rating-label:hover~.rating-label>.svg-icon svg:hover [fill]:not(.permanent
 .explore-btn-primary {
   border: 0;
   color: #ffffff;
-  background-color: #00B2FF;
+  background-color: #FFE4B5;
 }
 
 .explore-btn-primary:hover {
   color: #ffffff;
-  background-color: #0098DA;
+  background-color: #FFE4B5;
 }
 
 .explore-btn-secondary {
@@ -55179,7 +55179,7 @@ body {
 
 @media (min-width: 992px) {
   .sidebar-enabled[data-sidebar=on] .explore-toggle {
-    margin-right: 400px;
+    margin-right: 344px;
   }
 }
 

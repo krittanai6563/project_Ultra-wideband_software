@@ -1,16 +1,22 @@
 <template>
+           
 <div id="kt_sidebar" class="sidebar bg-warning" data-kt-drawer="true" data-kt-drawer-name="sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
     data-kt-drawer-width="{default:'200px', '350px': '300px'}" data-kt-drawer-direction="end"
     data-kt-drawer-toggle="#kt_sidebar_toggler">
+
+    
     <!--begin::Sidebar Content-->
     <div class="d-flex flex-column sidebar-body">
+        
         <!--begin::Sidebar Content-->
         <div id="kt_sidebar_content" class="py-10 px-2 px-lg-8">
             <div class="hover-scroll-y me-lg-n5 pe-lg-4" data-kt-scroll="true" data-kt-scroll-height="auto"
                 data-kt-scroll-offset="0px" data-kt-scroll-wrappers="#kt_sidebar_content">
                 <!--begin::Card-->
                 <div class="card bg-warning">
+
+                    
                     <!--begin::Body-->
                     <div class="card-body px-0">
                         <div class="pt-0">
@@ -43,32 +49,32 @@
                                 </div>
                                 <!--end::Title-->
                                 <!--begin::Row-->
-                                <!-- <div class="row row-cols-2 px-xl-12 sidebar-toolbar">
+                                <div class="row row-cols-2 px-xl-12 sidebar-toolbar">
                                     <div class="col p-3">
                                         <a href="#" class="btn p-5 w-100 text-start btn-active-primary">
-                                            <span class="text-white fw-bolder fs-1 d-block pb-1">38</span>
-                                            <span class="fw-bold">Pending</span>
+                                            <span class="text-white fw-bolder fs-1 d-block pb-1">{{ numChildren }}</span>
+                                            <span class="fw-bold">ผู้ใช้งาน</span>
                                         </a>
                                     </div>
                                     <div class="col p-3">
                                         <a href="#" class="btn p-5 w-100 text-start btn-active-primary">
-                                            <span class="text-white fw-bolder fs-1 d-block pb-1">204</span>
-                                            <span class="fw-bold">Completed</span>
+                                            <span class="text-white fw-bolder fs-1 d-block pb-1">{{ Area }}</span>
+                                            <span class="fw-bold">ผู้ละเมิด</span>
                                         </a>
                                     </div>
                                     <div class="col p-3">
                                         <a href="#" class="btn p-5 w-100 text-start btn-active-primary">
-                                            <span class="text-white fw-bolder fs-1 d-block pb-1">76</span>
-                                            <span class="fw-bold">On Hold</span>
+                                            <span class="text-white fw-bolder fs-1 d-block pb-1">3</span>
+                                            <span class="fw-bold">สมอ</span>
                                         </a>
                                     </div>
                                     <div class="col p-3">
                                         <a href="#" class="btn p-5 w-100 text-start btn-active-primary">
-                                            <span class="text-white fw-bolder fs-1 d-block pb-1">9</span>
-                                            <span class="fw-bold">In Progress</span>
+                                            <span class="text-white fw-bolder fs-1 d-block pb-1">{{ numChildren }}</span>
+                                            <span class="fw-bold">แท็ก</span>
                                         </a>
                                     </div>
-                                </div> -->
+                                </div>
                                 <!--end::Row-->
                             </div>
                             <!--end::Items-->
@@ -88,9 +94,43 @@
 </template>
 
 <script >
+import firebase from '../../firebase/firebase';
+
+
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Sidebar',
+    data() {
+        return {
+            numChildren: 0, // initialize the number of child nodes to 0
+            Area: 0,
+            totalCount: 0,
+        }
+    },
+    mounted() {
+        const db = firebase.database();
+        const userRef = db.ref("user"); // create a reference to the "user" node
+
+
+        userRef.once("value").then(snapshot => {
+            this.numChildren = snapshot.numChildren(); // update the number of child nodes using Vue data bindings
+        }).catch(error => {
+            console.error("Failed to retrieve data:", error);
+        });
+
+        const dbArea = db.ref('area') // create a reference to the "area" node
+
+        dbArea.once("value").then(snapshot => {
+            this.Area = snapshot.numChildren(); // update the Area property using the val() method
+        }).catch(error => {
+            console.error("Failed to retrieve data:", error);
+        });
+
+    }
+
+
+
+ 
 };
 
 </script>

@@ -240,7 +240,7 @@
                                     <!--begin::Row-->
                                     <div class="row g-5">
                                         <div class="col-sm-4">
-                                            <a href="#" class="card bg-light-primary hoverable min-h-125px shadow-none mb-5">
+                                            <a @click="navigateTo('/restricted_area')" class="card bg-light-primary hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center text-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">เขตหวงห้าม</h3>
                                                     <p class="mb-0 text-gray-600">ตรวจสอบการละเมิดเข้าพื้นที่หวงห้าม
