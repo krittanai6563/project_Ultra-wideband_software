@@ -5,6 +5,7 @@ import Find_Location from './views/Find_Location.vue'
 import Find_distance from './views/Find_distance.vue'
 import index1 from './components/Floorplan.vue'
 import restricted_area from './views/Restricted_area.vue'
+import map from './views/map.vue'
 
 const routes: RouteRecordRaw[] = [
 {
@@ -38,6 +39,10 @@ const routes: RouteRecordRaw[] = [
     name: 'restricted_area',
     component: restricted_area
 
+  }, {
+      path: '/map',
+      name: 'map',
+      component: map
   }
 ]
 const router = createRouter({

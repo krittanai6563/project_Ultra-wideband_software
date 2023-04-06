@@ -31,18 +31,6 @@ export default defineComponent({
     
     
 
-    // // Retrieve user data
-    // let userData = []
-    // let id_Tags = {}
-    // dbuser.once('value').then((snapshot) => {
-    //   snapshot.forEach((childSnapshot) => {
-    //     const childData = childSnapshot.val()
-    //     userData.push(childData)
-    //     id_Tags[childData.id_Tag] = childData.name
-    //   })
-    // }).catch((error) => {
-    //   console.error(error) // Handle any errors that occur
-    // })
 
 
     let anchor1Data = {}
@@ -154,8 +142,11 @@ export default defineComponent({
         let x = (C * E - F * B) / (E * A - B * D)
         let y = (C * D - A * F) / (B * D - A * E)
         position.value = [x, y]
-        // const userId = userData[0]?.name // Get the user's name from the userData array
-        // console.log('User:', userId)
+
+        let timer = setTimeout(() => {
+          console.log('No calculation made after 1 minute')
+        }, 60000)
+        
         checkPosition()
       
 
@@ -232,11 +223,17 @@ export default defineComponent({
         }
 
         console.log('Positions:', positions.value)
+        
+        clearTimeout(timer)
+          
+      } else {
+         console.log('Not enough data to calculate position')
       }
       
        
     }
-  
+
+
   
 
     // Fetch data from Firebase every 5 seconds

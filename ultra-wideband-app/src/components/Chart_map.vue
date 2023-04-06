@@ -68,7 +68,7 @@ export default defineComponent({
     });
 
     const db = firebase.database();
-    const dbRef = db.ref('esp32/json/Position');
+    const dbRef = db.ref('map');
 
     const updateChart = () => {
       dbRef.limitToLast(1).once('value', snapshot => {

@@ -235,6 +235,8 @@
                                                 </div>
                                             </a>
                                         </div>
+
+                                        
                                     </div>
                                     <!--end::Row-->
                                     <!--begin::Row-->
@@ -270,6 +272,14 @@
                                             </a>
                                      
                                         </div>
+                                              <div class="col-sm-4">
+                                                <a @click="navigateTo('/map')" class="card bg-light-danger hoverable min-h-125px shadow-none mb-5">
+                                                    <div class="card-body d-flex flex-column flex-center text-center">
+                                                        <h3 class="fs-3 mb-2 text-dark fw-bolder">แผนที่</h3>
+                                                        <p class="mb-0 text-gray-600">ค้นหาตำแหน่งการเดินทาง</p>
+                                                    </div>
+                                                </a>
+                                            </div>
                                     </div>
                                     <!--end::Row-->
                                 </div>
