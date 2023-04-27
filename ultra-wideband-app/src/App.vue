@@ -36,13 +36,10 @@ export default {
  </script>
 
 <template>
-  <div id="app">
+ 
 
 
-      <div>
-      <!-- <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'About' }">About</router-link> -->
-     </div>
+  
      
 
     
@@ -54,7 +51,9 @@ export default {
     
   
 
-  </div>
+
 </template>
+
+
 
 

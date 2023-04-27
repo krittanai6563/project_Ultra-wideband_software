@@ -265,7 +265,7 @@ components: { Header, Footer, Search},
     },
     methods: {
         async fetchData() {
-            const response = await fetch('https://projectuwb-27b59-default-rtdb.firebaseio.com/area.json');
+            const response = await fetch('https://puwb-346e7-default-rtdb.firebaseio.com/area.json');
             const data = await response.json();
 
             const dataArray = [];

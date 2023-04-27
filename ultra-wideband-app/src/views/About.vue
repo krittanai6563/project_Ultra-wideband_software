@@ -17,28 +17,34 @@
 </template> -->
 
 <template>
+
    <div class="row mb-12">
 
           <div class="card mb-5 mb-xxl-8">
               <div class="card-body d-flex justify-content-between card-rounded p-0 d-flex "
                   style="background-color:#F3F6F9; ">
-                  <div class="d-flex flex-column flex-lg-row-auto py-10 py-md-14 px-10 px-md-20 pe-lg-0">
-                      <h2 class="fw-bold text-dark mb-0">ค้นหาตำแหน่งย้อนหลัง</h2>
-                      <div class="fs-3 mb-8"></div>
+              <div class="d-flex flex-column flex-lg-row-auto p-10 p-md-20">
+      <h2 class="fw-bold text-dark mb-0">ค้นหาตำแหน่งย้อนหลัง</h2>
+      <div class="fs-3 mb-8"></div>
 
+      
 
-                      <label for="period"></label>
-                      <select class="select2-selection select2-selection--single form-select form-select-lg form-select-solid" style="width: 300px; background-color:#FFFFFF; " v-model="selectedPeriod">
-                        
-                          <option value="all">ค้นหาทั้งหมด</option>
-                          <option value="30"> 30 นาทีที่ผ่านมา</option>
-                          <option value="60"> 1 ชั่วโมงที่ผ่านมา</option>
-                          <option value="90"> 1 ชั่วโมงครึ่งที่ผ่านมา</option>
-                          <option value="180">3 ชั่วโมงที่ผ่านมา</option>
-                      </select>
-                      <!--end::Form-->
-                  </div>
+      <div class="d-flex flex-row"> <!-- add this class to create a horizontal flex container -->
+          <select class="select2-selection select2-selection--single form-select form-select-lg form-select-solid" style="width: 300px; background-color:#FFFFFF; "  v-model="selectedUser">
+        <option value="">All users</option>
+        <option v-for="user in users" :key="user.id" :value="user.name">{{ user.name }}</option>
+      </select>
 
+          <label for="period"></label>
+          <select class="select2-selection select2-selection--single form-select form-select-lg form-select-solid" style="width: 300px; background-color:#FFFFFF; " v-model="selectedPeriod">
+              <option value="all">ค้นหาทั้งหมด</option>
+              <option value="30"> 30 นาทีที่ผ่านมา</option>
+              <option value="60"> 1 ชั่วโมงที่ผ่านมา</option>
+              <option value="90"> 1 ชั่วโมงครึ่งที่ผ่านมา</option>
+              <option value="180">3 ชั่วโมงที่ผ่านมา</option>
+          </select>
+      </div>
+</div>
                   <div class="d-none d-md-flex flex-row-fluid mw-200px ms-auto bgi-no-repeat bgi-position-y-center bgi-position-x-right bgi-size-contain"
                       style="background-image: url('../src/assets/frontend/img/undraw_map_re_60yf.svg');">
                   </div>
@@ -70,6 +76,7 @@
 import { defineComponent, ref, watch } from 'vue';
 import Chart from 'chart.js/auto';
 import ApiService from '../api';
+import firebase from '../firebase/firebase'
 
 export default defineComponent({
   name: 'MyComponent',
@@ -80,10 +87,37 @@ export default defineComponent({
     const canvasRef = ref<HTMLCanvasElement | null>(null);
     const showLine = ref(false);
 
+     const selectedUser = ref('');
+
+    const db = firebase.database();
+    const dbuser = db.ref('user');
+    const users = ref([]);
+
+    dbuser.orderByChild('name').on('value', (snapshot) => {
+      users.value = snapshot.val();
+    });
+
     ApiService.get<any>('').then(response => {
       positions.value = response.data;
+      console.log(positions.value)
       filterPositions();
+      checkSelectedUser();
     });
+
+ 
+    function checkSelectedUser() {
+      const selectedName = selectedUser.value;
+      for (const key in positions.value) {
+        if (positions.value[key].name === selectedName) {
+          // Found a match!
+          console.log('Selected name matches a position:', positions.value[key]);
+          return;
+        }
+      }
+      // No match found
+      console.log('Selected name does not match any position.');
+    }
+    
 
     function formatDate(timestamp: number) {
       const date = new Date(timestamp);
@@ -92,19 +126,29 @@ export default defineComponent({
 
     function filterPositions() {
       const period = parseInt(selectedPeriod.value);
-      if (isNaN(period)) {
-        // Search all option selected
-        filteredPositions.value = Object.keys(positions.value)
+      const selectedName = selectedUser.value;
+      let filteredByUser = [];
+
+      if (selectedName) {
+        filteredByUser = Object.keys(positions.value)
+          .filter((id) => positions.value[id].name === selectedName)
           .map((id) => positions.value[id]);
       } else {
-        filteredPositions.value = Object.keys(positions.value)
-          .filter(
-            (id) => positions.value[id].timestamp > Date.now() - period * 60 * 1000
-          )
-          .map((id) => positions.value[id]);
+        filteredByUser = Object.values(positions.value);
       }
+
+      if (isNaN(period)) {
+        // Search all option selected
+        filteredPositions.value = filteredByUser;
+      } else {
+        filteredPositions.value = filteredByUser.filter(
+          (position) => position.timestamp > Date.now() - period * 60 * 1000
+        );
+      }
+
       drawChart();
     }
+
 
     function drawChart() {
       const ctx = canvasRef.value?.getContext('2d');
@@ -142,7 +186,7 @@ export default defineComponent({
       }
     }
 
-    watch([selectedPeriod, showLine], filterPositions);
+    watch([selectedPeriod, showLine, selectedUser,checkSelectedUser], filterPositions);
 
     return {
       filteredPositions,
@@ -150,6 +194,8 @@ export default defineComponent({
       selectedPeriod,
       canvasRef,
       showLine,
+      selectedUser,
+      users,
     };
   },
 });

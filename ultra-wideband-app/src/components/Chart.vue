@@ -23,8 +23,12 @@ export default defineComponent({
 
   data.value.datasets = [
       {
-        label: 'Tag',
-        data: [],
+      label: 'Tag',
+        
+      data: [],
+      options: {
+    
+        },
        backgroundColor: 'rgba(255, 206, 86, 1)',
         borderColor: 'rgba(255, 206, 86, 1)',
         borderWidth: 1,
@@ -73,17 +77,23 @@ export default defineComponent({
     const updateChart = () => {
       dbRef.limitToLast(1).once('value', snapshot => {
         const newValues = [];
+        const now = Date.now();
         snapshot.forEach(childSnapshot => {
           const childData = childSnapshot.val();
           const x = childData.x;
           const y = childData.y;
           const r = childData.r;
+          const timestamp = childData.timestamp;
           const newData = {
             x,
             y,
             r,
+            timestamp,
           };
-          newValues.push(newData);
+          // Filter out data points more than 1 minute old
+          if (now - timestamp < 60 * 1000) {
+            newValues.push(newData);
+          }
         });
         data.value.datasets[0].data = newValues;
         data.value.datasets[1].data = [
@@ -91,7 +101,6 @@ export default defineComponent({
           { x: 5, y: 1, r: 10 },
           { x: 3, y: 5, r: 10 },
         ];
-      
 
         localStorage.setItem('chartData', JSON.stringify(data.value));
 
@@ -100,6 +109,38 @@ export default defineComponent({
         chart.update();
       });
     };
+
+
+    // const updateChart = () => {
+    //   dbRef.limitToLast(1).once('value', snapshot => {
+    //     const newValues = [];
+    //     snapshot.forEach(childSnapshot => {
+    //       const childData = childSnapshot.val();
+    //       const x = childData.x;
+    //       const y = childData.y;
+    //       const r = childData.r;
+    //       const newData = {
+    //         x,
+    //         y,
+    //         r,
+    //       };
+    //       newValues.push(newData);
+    //     });
+    //     data.value.datasets[0].data = newValues;
+    //     data.value.datasets[1].data = [
+    //       { x: 1, y: 1, r: 10 },
+    //       { x: 5, y: 1, r: 10 },
+    //       { x: 3, y: 5, r: 10 },
+    //     ];
+      
+
+    //     localStorage.setItem('chartData', JSON.stringify(data.value));
+
+    //     // Update the chart
+    //     const chart = Chart.getChart(chartCanvas.value);
+    //     chart.update();
+    //   });
+    // };
 
     // Update the chart every 5 seconds
     setInterval(updateChart, 1000);

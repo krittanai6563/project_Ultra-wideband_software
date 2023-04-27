@@ -1,9 +1,9 @@
 
 <template>
    
-
-    {{ latestValues }}
-          <p v-if="position">position: {{ position }}</p>
+    <p>ชื่อ: {{ userName }}</p>
+   <p>{{ latestValues }}</p> 
+          <p v-if="position">ตำแหน่ง: {{ position }}</p>
         <p v-else>Waiting for location data...</p>
 
          
@@ -28,7 +28,7 @@ export default defineComponent({
     const dbuser = db.ref('user')
 
 
-    
+    const userName = ref(null);
     
 
 
@@ -49,6 +49,13 @@ export default defineComponent({
         if (anchor1Data && userData.length > 0) {
           const anchor1TagId = anchor1Data.ID.toString()
           const userIdTag = userData[0].id_Tag.toString()
+          const user = userData.find(data => data.id_Tag.toString() === anchor1TagId)
+
+            if (user) {
+        userName.value = user.name
+          } else {
+            console.log(`No user with id_Tag ${anchor1TagId} found in user data`)
+          }
 
           if (anchor1TagId === userIdTag) {
             console.log(`User with id_Tag ${userIdTag} is associated with Anchor1`)
@@ -76,7 +83,7 @@ export default defineComponent({
 
     const targetPositions = [
       { x: 1, y: 1, label: 'A' },
-      { x: 4, y: 1, label: 'B' },
+      { x: 6, y: 1, label: 'B' },
       { x: 3, y: 5, label: 'C' }
     ]
 
@@ -132,7 +139,7 @@ export default defineComponent({
       const [r1, r2, r3] = latestValues.value
       if (r1 !== null && r2 !== null && r3 !== null) {
         // กำหหด Anchor_UWB
-        const x1 = 1, y1 = 1, x2 = 5, y2 = 1, x3 = 3, y3 = 5
+        const x1 = 1, y1 = 1, x2 = 6, y2 = 1, x3 = 3, y3 = 5
         let A = 2 * x2 - 2 * x1
         let B = 2 * y2 - 2 * y1
         let C = r1 ** 2 - r2 ** 2 - x1 ** 2 + x2 ** 2 - y1 ** 2 + y2 ** 2
@@ -146,16 +153,16 @@ export default defineComponent({
         let timer = setTimeout(() => {
           console.log('No calculation made after 1 minute')
         }, 60000)
-        
+
         checkPosition()
-      
 
 
-   
 
-    
-      
-    
+
+
+
+
+
         // พื้นที่หวงห้าม
 
         // const distance = Math.sqrt(Math.pow(position.value[0] - x1, 2) + Math.pow(position.value[1] - y1, 2))
@@ -176,7 +183,7 @@ export default defineComponent({
         //             duplicateFound = true
         //           }
         //         })
-                
+
         //         if (!duplicateFound) {
         //           restrictedAreaRef.push({ distance, timestamp: now, ID_Tag:1}, error => {
         //             if (error) {
@@ -206,32 +213,82 @@ export default defineComponent({
         // }
 
         // เอาเฉพาะค่าที่ไม่ซ้ำ
-        const newPosition = JSON.stringify(position.value)
-    
-       
-        // Check for duplicates without saving
-        let duplicateFound = false
-        for (let i = 0; i < positions.value.length; i++) {
-          if (JSON.stringify(positions.value[i]) === newPosition) {
-            duplicateFound = true
-            break
+
+
+        const newPosition = JSON.stringify(position.value);
+
+        // Check for duplicates in local storage
+        let duplicateFound = false;
+        const storedPositions = JSON.parse(localStorage.getItem("positions") || "[]");
+        for (let i = 0; i < storedPositions.length; i++) {
+          if (JSON.stringify(storedPositions[i]) === newPosition) {
+            duplicateFound = true;
+            break;
           }
         }
-      if (!duplicateFound) {
-          dbPosition.push({ x, y, r:10 ,timestamp: firebase.database.ServerValue.TIMESTAMP ,id: userData[0].id_Tag  })
-          positions.value.push(position.value)
+
+        // Run the code that uses userData inside this callback function
+        if (!duplicateFound) {
+          const idTag = userData.length > 0 ? userData[0].id_Tag : null;
+          const name = userData.length > 0 ? userData[0].name : null;
+          if (idTag) {
+            dbPosition.push({
+              x,
+              y,
+              r: 10,
+              timestamp: firebase.database.ServerValue.TIMESTAMP,
+              id: idTag,
+              name,
+            });
+            positions.value.push(position.value);
+
+            // Store positions in local storage
+            storedPositions.push(position.value);
+            localStorage.setItem("positions", JSON.stringify(storedPositions));
+          } else {
+            console.error("User data is empty or undefined");
+          }
         }
 
-        console.log('Positions:', positions.value)
-        
-        clearTimeout(timer)
-          
-      } else {
-         console.log('Not enough data to calculate position')
+        console.log("Positions:", positions.value);
+
+        clearTimeout(timer);
+
       }
+    }
+    //     const newPosition = JSON.stringify(position.value)
+    
+       
+    //     // Check for duplicates without saving
+    //     let duplicateFound = false
+    //     for (let i = 0; i < positions.value.length; i++) {
+    //       if (JSON.stringify(positions.value[i]) === newPosition) {
+    //         duplicateFound = true
+    //         break
+    //       }
+    //     }
+    //     // Run the code that uses userData inside this callback function
+    //     if (!duplicateFound) {
+    //       const idTag = userData.length > 0 ? userData[0].id_Tag : null;
+    //       const name = userData.length > 0 ? userData[0].name : null;
+    //       if (idTag) {
+    //         dbPosition.push({ x, y, r: 10, timestamp: firebase.database.ServerValue.TIMESTAMP, id: idTag, name })
+    //         positions.value.push(position.value)
+    //       } else {
+    //         console.error("User data is empty or undefined");
+    //       }
+    //     }
+
+    //     console.log('Positions:', positions.value)
+        
+    //     clearTimeout(timer)
+          
+    //   } else {
+    //      console.log('Not enough data to calculate position')
+    //   }
       
        
-    }
+    // }
 
 
   
@@ -264,7 +321,7 @@ export default defineComponent({
 
 
     return { latestValues, position, room, // expose the `room` variable to the template
-      targetPositions,
+      targetPositions,  userName,
       checkPosition }
     
   }

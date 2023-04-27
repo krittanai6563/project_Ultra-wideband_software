@@ -36,26 +36,7 @@
         <!--end::Left-->
         <!--begin::Right-->
         <div class="d-flex align-items-center">
-            <!--begin::Search-->
-            <button class="btn btn-icon btn-sm btn-active-bg-accent ms-1 ms-lg-6" data-bs-toggle="modal"
-                data-bs-target="#kt_header_search_modal" id="kt_header_search_toggle">
-                <!--begin::Svg Icon | path: icons/duotone/General/Search.svg-->
-                <span class="svg-icon svg-icon-1 svg-icon-dark">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                        height="24px" viewBox="0 0 24 24" version="1.1">
-                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                            <rect x="0" y="0" width="24" height="24" />
-                            <path
-                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
-                                fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                            <path
-                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
-                                fill="#000000" fill-rule="nonzero" />
-                        </g>
-                    </svg>
-                </span>
-                <!--end::Svg Icon-->
-            </button>
+ 
             <!--end::Search-->
          
             <!--begin::User-->
@@ -86,7 +67,7 @@
                     
                     <!--begin::Row-->
                     <div class="row row-cols-2 g-0">
-                        <a href="profile/overview.html"
+                        <a @click="navigateTo('/profile')"
                             class="border-bottom border-end text-center py-10 btn btn-active-color-warning rounded-0">
                             <!--begin::Svg Icon | path: icons/duotone/Layout/Layout-4-blocks.svg-->
                             <span class="svg-icon svg-icon-3x me-n1">
@@ -102,11 +83,11 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <span class="fw-bolder fs-6 d-block pt-3">My Profile</span>
+                            <span class="fw-bolder fs-6 d-block pt-3">ตั้งค่าตำแหน่ง</span>
                         </a>
                     
                        
-                        <a href="#" class="col text-center py-10 btn btn-active-color-warning rounded-0">
+                        <a @click="navigateTo('/')" class="col text-center py-10 btn btn-active-color-warning rounded-0">
                             <!--begin::Svg Icon | path: icons/duotone/Navigation/Sign-out.svg-->
                             <span class="svg-icon svg-icon-3x me-n1">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -128,7 +109,7 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <span class="fw-bolder fs-6 d-block pt-3">Sign Out</span>
+                            <span class="fw-bolder fs-6 d-block pt-3">ออกจากระบบ</span>
                         </a>
                     </div>
                     <!--end::Row-->
@@ -211,7 +192,7 @@
                                     <!--begin::Row-->
                                     <div class="row g-12">
                                         <div class="col-sm-8">
-                                            <a @click="navigateTo('/')" class="card bg-light-success hoverable min-h-125px shadow-none mb-5">
+                                            <a @click="navigateTo('/Home')" class="card bg-light-success hoverable min-h-125px shadow-none mb-5">
                                                 <div class="card-body d-flex flex-column flex-center">
                                                     <h3 class="fs-3 mb-2 text-dark fw-bolder">ระบุตำแหน่ง</h3>
                                                     <p class="mb-0 text-gray-600">ระบุตำแหน่งแบบ real time</p>
@@ -272,14 +253,7 @@
                                             </a>
                                      
                                         </div>
-                                              <div class="col-sm-4">
-                                                <a @click="navigateTo('/map')" class="card bg-light-danger hoverable min-h-125px shadow-none mb-5">
-                                                    <div class="card-body d-flex flex-column flex-center text-center">
-                                                        <h3 class="fs-3 mb-2 text-dark fw-bolder">แผนที่</h3>
-                                                        <p class="mb-0 text-gray-600">ค้นหาตำแหน่งการเดินทาง</p>
-                                                    </div>
-                                                </a>
-                                            </div>
+                                             
                                     </div>
                                     <!--end::Row-->
                                 </div>

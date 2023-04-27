@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 
-const API_URL = 'https://projectuwb-27b59-default-rtdb.firebaseio.com/esp32/json/Position.json';
+const API_URL = 'https://puwb-346e7-default-rtdb.firebaseio.com/esp32/json/Position.json';
 
 interface ApiServiceInterface {
   init(): void;

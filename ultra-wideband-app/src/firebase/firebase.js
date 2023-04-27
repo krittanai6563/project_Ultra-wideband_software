@@ -3,15 +3,15 @@ import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
 
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC2l21YBFXUdqz61ukwaRXcEynt7t32C30",
-  authDomain: "projectuwb-27b59.firebaseapp.com",
-  databaseURL: "https://projectuwb-27b59-default-rtdb.firebaseio.com",
-  projectId: "projectuwb-27b59",
-  storageBucket: "projectuwb-27b59.appspot.com",
-  messagingSenderId: "436204132556",
-  appId: "1:436204132556:web:045ca6a919b9f886454a69",
-  measurementId: "G-574YC9RVV3"
+  apiKey: "AIzaSyCTPYTH7w9aGehFZymLW-UBCyVy23V4OOU",
+  authDomain: "puwb-346e7.firebaseapp.com",
+  projectId: "puwb-346e7",
+  storageBucket: "puwb-346e7.appspot.com",
+  messagingSenderId: "549308292223",
+  appId: "1:549308292223:web:6bbc3866afd4c36168f34a",
+  measurementId: "G-PTNFEM0YD4"
 };
 
 // Initialize Firebase
@@ -24,3 +24,26 @@ firebase.initializeApp(firebaseConfig);
 // export const User = db.ref("user")
 
 export default firebase;
+
+
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCTPYTH7w9aGehFZymLW-UBCyVy23V4OOU",
+//   authDomain: "puwb-346e7.firebaseapp.com",
+//   projectId: "puwb-346e7",
+//   storageBucket: "puwb-346e7.appspot.com",
+//   messagingSenderId: "549308292223",
+//   appId: "1:549308292223:web:6bbc3866afd4c36168f34a",
+//   measurementId: "G-PTNFEM0YD4"
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(app);
