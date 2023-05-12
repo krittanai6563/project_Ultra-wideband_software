@@ -51,6 +51,7 @@
 </template>
 
 <script>
+
 import firebase from '../firebase/firebase'
 import 'firebase/compat/auth'
 import { useRouter } from 'vue-router'
